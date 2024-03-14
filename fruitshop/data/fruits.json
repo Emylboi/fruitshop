@@ -1,0 +1,113 @@
+[
+    {
+      "id": 1,
+      "image": "images/apple.jpg",
+      "fruitname": "Apple",
+      "price": 0.25,
+      "weight": "0.2 kg",
+      "country": "United States",
+      "countryflag": "flags/USA.jpg",
+      "eco": true,
+      "description": "Crisp, sweet, and juicy, apples are a versatile fruit perfect for snacking, baking, or adding to salads."
+    },
+    {
+      "id": 2,
+      "image": "images/Banana.webp",
+      "fruitname": "Banana",
+      "price": 0.20,
+      "weight": "0.15 kg",
+      "country": "Ecuador",
+      "countryflag": "flags/ecuador.png",
+      "eco": false,
+      "description": "Creamy and nutritious, bananas are a convenient snack rich in potassium, fiber, and essential vitamins."
+    },
+    {
+      "id": 3,
+      "image": "images/orange.jpg",
+      "fruitname": "Orange",
+      "price": 0.24,
+      "weight": "0.25 kg",
+      "country": "Spain",
+      "countryflag": "flags/spain.webp",
+      "eco": true,
+      "description": "Juicy and tangy, oranges are packed with vitamin C and make refreshing juices or zestful additions to dishes."
+    },
+    {
+      "id": 4,
+      "image": "images/strawberry.jpg",
+      "fruitname": "Strawberry",
+      "price": 1.20,
+      "weight": "0.1 kg",
+      "country": "Mexico",
+      "countryflag": "flags/mexico.png",
+      "eco": false,
+      "description": "Sweet and succulent, strawberries are antioxidant-rich berries perfect for desserts, smoothies, or garnishes."
+    },
+    {
+      "id": 5,
+      "image": "images/grapes.jpg",
+      "fruitname": "Grapes",
+      "price": 4.00,
+      "weight": "0.5 kg",
+      "country": "Italy",
+      "countryflag": "flags/italy.svg",
+      "eco": true,
+      "description": "Plump and flavorful, grapes come in various colors and are ideal for snacking, salads, or making wine."
+    },
+    {
+      "id": 6,
+      "image": "images/watermelon.jpg",
+      "fruitname": "Watermelon",
+      "price": 1.17,
+      "weight": "3 kg",
+      "country": "Brazil",
+      "countryflag": "flags/brazil.png",
+      "eco": false,
+      "description": "Refreshing and hydrating, watermelons are large, juicy fruits perfect for summertime picnics and desserts."
+    },
+    {
+      "id": 7,
+      "image": "images/pineapple.webp",
+      "fruitname": "Pineapple",
+      "price": 1.20,
+      "weight": "1.5 kg",
+      "country": "Costa Rica",
+      "countryflag": "flags/costarica.png",
+      "eco": true,
+      "description": "Tropical and tangy, pineapples are rich in vitamin C and make delicious additions to both sweet and savory dishes."
+    },
+    {
+      "id": 8,
+      "image": "images/mango.webp",
+      "fruitname": "Mango",
+      "price": 8.33,
+      "weight": "0.3 kg",
+      "country": "India",
+      "countryflag": "flags/india.jpg",
+      "eco": false,
+      "description": "Sweet and aromatic, mangoes are tropical fruits prized for their juicy flesh and versatility in smoothies, salads, and desserts."
+    },
+    {
+      "id": 9,
+      "image": "images/kiwi.jpg",
+      "fruitname": "Kiwi",
+      "price": 5.00,
+      "weight": "0.2 kg",
+      "country": "New Zealand",
+      "countryflag": "flags/newzealand.png",
+      "eco": true,
+      "description": "Tart and vibrant, kiwis are nutrient-dense fruits packed with vitamin C, fiber, and antioxidants, perfect for snacking or adding to fruit salads."
+    },
+    {
+      "id": 10,
+      "image": "images/avocado.jpg",
+      "fruitname": "Avocado",
+      "price": 6.00,
+      "weight": "0.25 kg",
+      "country": "Mexico",
+      "countryflag": "flags/mexico.png",
+      "eco": false,
+      "description": "Creamy and nutritious, avocados are rich in healthy fats, vitamins, and minerals, ideal for guacamole, salads, or toast toppings."
+    }
+  ]
+  
