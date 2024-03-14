@@ -26,7 +26,9 @@ shopping.init = async () => {
   };
 
   const renderShop = () => {
-    let total = Math.round(shopArray.reduce((total, item) => total + item.price,0) * 100);
+    let total = Math.round(
+      shopArray.reduce((total, item) => total + item.price, 0) * 100
+    );
     let totalPrice = total / 100;
     if (shopArray.length != 0) {
       if (shopOutput) {
@@ -38,12 +40,11 @@ shopping.init = async () => {
             fruitTemplateShopCart(fruit)
           );
         });
-        
-        shopOutput.insertAdjacentHTML("beforeend", totalPrice)
-      }
-      
-      removeShopping();
 
+        shopOutput.insertAdjacentHTML("beforeend", totalPrice);
+      }
+
+      removeShopping();
     } else {
       if (shopOutput) {
         shopOutput.innerHTML = "There's nothing in the cart";
