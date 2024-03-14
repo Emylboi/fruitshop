@@ -1,66 +1,73 @@
 import { fruitTemplateFavorite } from "./templates.js";
 import data from "./fetchData.js";
 
-const favorites = {}
+const favorites = {};
 
 favorites.init = async () => {
+  const favoriteOutput = document.querySelector(".fruits-favorite");
 
-    const favoriteOutput = document.querySelector('.fruits-favorite')
+  let favoriteArray = JSON.parse(localStorage.getItem("favoriteList")) || [];
 
-    let favoriteArray = JSON.parse(localStorage.getItem("favoriteList")) || [];
+  const fruits = await data.fetchFruits();
 
-    const fruits = await data.fetchFruits();
+  const removeFavorite = () => {
+    const favBtnRemove = document.querySelectorAll(".favBtnRemove");
 
-    const removeFavorite = () => {
-        const favBtnRemove = document.querySelectorAll(".favBtnRemove");
+    favBtnRemove.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const fruitID = event.target.getAttribute("id");
+        const index = favoriteArray.findIndex((fruit) => fruit.id == fruitID);
 
-        favBtnRemove.forEach((btn) => {
-            btn.addEventListener("click", (event) => {
-                const fruitID = event.target.getAttribute("id")
-                const index = favoriteArray.findIndex((fruit) => fruit.id == fruitID)
+        favoriteArray.splice(index, 1);
+        localStorage.setItem("favoriteList", JSON.stringify(favoriteArray));
+        renderFavorites();
+      });
+    });
+  };
 
-                favoriteArray.splice(index, 1);
-                localStorage.setItem("favoriteList", JSON.stringify(favoriteArray));
-                renderFavorites();
-            })
-        })
+  const renderFavorites = () => {
+    if (favoriteArray.length != 0) {
+      if (favoriteOutput) {
+        favoriteOutput.innerHTML = "";
+
+        favoriteArray.forEach((fruit) => {
+          favoriteOutput.insertAdjacentHTML(
+            "beforeend",
+            fruitTemplateFavorite(fruit)
+          );
+        });
+      }
+
+      removeFavorite();
+      
+    } else {
+      if (favoriteOutput) {
+        favoriteOutput.innerHTML = "There's no favorites";
+      }
     }
+  };
 
-    const renderFavorites = () => {
-        if (favoriteArray.length != 0) {
-            favoriteOutput.innerHTML = "";
+  renderFavorites();
 
-            favoriteArray.forEach((fruit) => {
-                favoriteOutput.insertAdjacentHTML("beforeend", fruitTemplateFavorite(fruit));
-            })
-            
-            removeFavorite();
-        } else{
-            favoriteOutput.innerHTML = "There's no favorites"
-        }
-    };
+  const favBtn = document.querySelectorAll(".fruitFavorite");
+
+  const addFavorite = async (event) => {
+    const fruitID = event.target.getAttribute("id");
+
+    const fruitToAdd = fruits.find((fruit) => fruit.id == fruitID);
+
+    if (!favoriteArray.includes(fruitToAdd)) {
+      favoriteArray.push(fruitToAdd);
+
+      localStorage.setItem("favoriteList", JSON.stringify(favoriteArray));
+    }
 
     renderFavorites();
+  };
 
-    const favBtn = document.querySelectorAll(".fruitFavorite")
-
-    const addFavorite = async (event) => {
-        const fruitID = event.target.getAttribute("id");
-
-        const fruitToAdd = fruits.find((fruit) => fruit.id == fruitID);
-
-        if (!favoriteArray.includes(fruitToAdd)){
-            favoriteArray.push(fruitToAdd)
-
-            localStorage.setItem("favoriteList", JSON.stringify(favoriteArray));
-        }
-
-        renderFavorites();
-    }
-
-    favBtn.forEach((btn) => {
-        btn.addEventListener("click", addFavorite);
-    });
+  favBtn.forEach((btn) => {
+    btn.addEventListener("click", addFavorite);
+  });
 };
 
 export default favorites;

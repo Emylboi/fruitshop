@@ -1,61 +1,84 @@
 import data from "./fetchData.js";
 import { fruitTemplateShopCart } from "./templates.js";
 
-const shopping = {}
+const shopping = {};
 
 shopping.init = async () => {
-    const shopOutput = document.querySelector('.fruits-ShopOutput')
-    let shopArray = JSON.parse(localStorage.getItem("shopList")) || [];
+  const shopOutput = document.querySelector(".fruits-shopOutput");
 
-    const fruits = await data.fetchFruits();
+  let shopArray = JSON.parse(localStorage.getItem("shopList")) || [];
 
-    const removeShopping = () => {
-        const shopBtnRemove = document.querySelectorAll(".shopBtnRemove");
+  const fruits = await data.fetchFruits();
 
-        shopBtnRemove.forEach((btn) => {
-            btn.addEventListener("click", (event) => {
-                const fruitID = event.target.getAttribute("id")
-                const index = favoriteArray.findIndex((fruit) => fruit.id == fruitID)
+  const removeShopping = () => {
+    const shopBtnRemove = document.querySelectorAll(".shopBtnRemove");
 
-                favoriteArray.splice(index, 1);
-                localStorage.setItem("shopList", JSON.stringify(shopArray));
-                renderShop();
-            })
-        })
-    }
+    shopBtnRemove.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const fruitID = event.target.getAttribute("id");
+        const index = shopArray.findIndex((fruit) => fruit.id == fruitID);
 
-    const renderShop = () => {
-        if (shopArray.length != 0) {
-            shopOutput.innerHTML = "";
-
-            shopArray.forEach((fruit) => {
-                shopOutput.insertAdjacentHTML("beforeend", fruitTemplateShopCart(fruit));
-            })
-            
-            removeShopping();
-        } else{
-            shopOutput.innerHTML = "There's nothing in the cart"
-        }
-    };
-
-    const addCartBtn = document.querySelectorAll(".fruitShopCart")
-
-    const addShopping = async (event) => {
-        const fruitID = event.target.getAttribute("id")
-        const fruitToShop = fruits.find((fruit) => fruit.id == fruitID);
-
-        if (!shopArray.includes(fruitToShop)){
-            shopArray.push(fruitToShop)
-
-            localStorage.setItem("shopList", JSON.stringify(shopArray));
-        }
-
+        shopArray.splice(index, 1);
+        localStorage.setItem("shopList", JSON.stringify(shopArray));
         renderShop();
+      });
+    });
+  };
+
+  const renderShop = () => {
+    let total = Math.round(shopArray.reduce((total, item) => total + item.price,0) * 100);
+    let totalPrice = total / 100;
+    if (shopArray.length != 0) {
+      if (shopOutput) {
+        shopOutput.innerHTML = "";
+
+        shopArray.forEach((fruit) => {
+          shopOutput.insertAdjacentHTML(
+            "beforeend",
+            fruitTemplateShopCart(fruit)
+          );
+        });
+
+        
+        shopOutput.insertAdjacentHTML("beforeend", totalPrice)
+      }
+
+      /* let newShopArray = Array.from(shopArray) */
+
+      
+
+      /* let totalPrice = newShopArray.reduce((a, b) => a.price + b.price) */
+
+      removeShopping();
+
+    } else {
+      if (shopOutput) {
+        shopOutput.innerHTML = "There's nothing in the cart";
+      }
+    }
+  };
+
+  renderShop();
+
+  const addCartBtn = document.querySelectorAll(".fruitShopCart");
+
+  const addShopping = async (event) => {
+    const fruitID = event.target.getAttribute("id");
+
+    const fruitToShop = fruits.find((fruit) => fruit.id == fruitID);
+
+    if (!shopArray.includes(fruitToShop)) {
+      shopArray.push(fruitToShop);
+
+      localStorage.setItem("shopList", JSON.stringify(shopArray));
     }
 
-    addCartBtn.forEach((btn) => {
-        btn.addEventListener("click", addShopping);
-    })
-}
+    renderShop();
+  };
+
+  addCartBtn.forEach((btn) => {
+    btn.addEventListener("click", addShopping);
+  });
+};
 
 export default shopping;
