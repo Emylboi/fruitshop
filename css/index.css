@@ -12,28 +12,29 @@
 
 .product{
     width: 70%;
-    height: 100%;
+    height: 50vh;
     border: 1px solid black;
     margin: 5vh auto;
     text-align: center;
+    position: relative;
 }
 
 .fruitImage{
-    width: 100%;
     height: 80%;
     background-size: cover;
-    border: 1px solid black;
     margin: 0 auto;
     text-align: center;
+    object-fit: cover;
 }
 
 .fruitInfo{
     position: relative;
     background-color: lightblue;
-    height: 8vh;
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid black;
 }
 
 .fruitName{
@@ -55,11 +56,12 @@
 
 .fruitCountryFlag{
     position: absolute;
+    inset: 0;
     width: 10vw;
 }
 
 .fruitFavorite{
     position: absolute;
     font-size: 2rem;
-    right: 15%;
+    right: 0;
 }

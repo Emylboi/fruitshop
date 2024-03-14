@@ -38,17 +38,10 @@ shopping.init = async () => {
             fruitTemplateShopCart(fruit)
           );
         });
-
         
         shopOutput.insertAdjacentHTML("beforeend", totalPrice)
       }
-
-      /* let newShopArray = Array.from(shopArray) */
-
       
-
-      /* let totalPrice = newShopArray.reduce((a, b) => a.price + b.price) */
-
       removeShopping();
 
     } else {
